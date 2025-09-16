@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  redis_good_night:
+    image: redis:7
+    container_name: redis_good_night
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
   db:
     image: postgres:14
     environment:
@@ -36,6 +44,8 @@ services:
   #   tty: true
 
 volumes:
+  redis_data:
+    driver: local
   store:
     driver: local
   bundle:

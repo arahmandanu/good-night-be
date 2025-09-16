@@ -84,3 +84,9 @@ gem "rubocop-performance"
 
 # Dependency injection and more flexible object initialization
 gem "dry-initializer"
+
+# Caching
+gem "redis"
+
+# Hashie for creating mash objects
+gem "hashie"
