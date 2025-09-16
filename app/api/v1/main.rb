@@ -1,22 +1,18 @@
 module V1
   class Main < Grape::API
-    format :json
+  format :json
 
-    resource :main do
-      desc "Returns hello world"
-      get do
-        { message: "Hello, world!" }
-      end
-    end
+  mount V1::Resources::Users::Users
 
-    add_swagger_documentation(
-      mount_path: "doc",
-      api_version: "v1",
-      hide_documentation_path: true,
-      info: {
-        title: "Good Night API",
-        description: "API documentation for Good Night app"
-      }
-    )
+  add_swagger_documentation(
+    mount_path: "doc",
+    api_version: "v1",
+    hide_documentation_path: true,
+    info: {
+      title: "Good Night API",
+      description: "API documentation for Good Night app",
+      contact_email: "adrian.rahmandanu2@gmail.com"
+    }
+  )
   end
 end
