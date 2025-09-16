@@ -3,6 +3,7 @@ module V1
   format :json
 
   mount V1::Resources::Users::Users
+  mount V1::Resources::Follows::User
 
   add_swagger_documentation(
     mount_path: "doc",

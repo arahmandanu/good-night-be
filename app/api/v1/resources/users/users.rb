@@ -1,7 +1,7 @@
 module V1
   module Resources
     module Users
-      class Users < Grape::API   # <-- must inherit from Grape::API
+      class Users < Grape::API
         format :json
 
         resource :users do
