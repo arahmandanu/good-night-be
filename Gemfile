@@ -31,6 +31,18 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Serializers
+gem "active_model_serializers"
+
+# ENV
+gem "dotenv-rails"
+
+# Form objects and validations
+gem "dry-validation"
+
+# Pagination
+gem "kaminari"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -55,3 +67,14 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# APIS framework and documentation
+gem "grape"
+gem "grape-swagger"
+gem "grape-swagger-rails" # For easy integration of Swagger UI in a Rails app
+gem "grape-entity" # Often used with Grape for defining API entities
+gem "grape-swagger-entity" # Provides Swagger documentation for Grape entities
+
+# Linting
+gem "rubocop"
+gem "rubocop-performance"
