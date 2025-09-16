@@ -15,8 +15,7 @@ module V1
             requires :name, type: String, desc: "User's name"
           end
           post do
-            result = Usecases::User::ActorCreate.new({ name: params[:name] }).call
-            byebug
+            generate_response(::Users::ActorCreateService.new(name: nil).call)
           end
         end
       end

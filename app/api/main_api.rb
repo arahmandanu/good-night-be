@@ -1,6 +1,7 @@
 
 class MainApi < Grape::API
   # Build params using object
-  include Grape::Extensions::Hashie::Mash::ParamBuilder
+  helpers V1::Helpers
+
   mount V1::Main
 end
