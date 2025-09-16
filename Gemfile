@@ -56,6 +56,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "byebug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :development do
@@ -79,3 +81,6 @@ gem "grape-swagger-entity" # Provides Swagger documentation for Grape entities
 # Linting
 gem "rubocop"
 gem "rubocop-performance"
+
+# Dependency injection and more flexible object initialization
+gem "dry-initializer"
