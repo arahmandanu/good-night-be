@@ -15,7 +15,7 @@ module V1
             requires :name, type: String, desc: "User's name"
           end
           post do
-            generate_response(::Users::ActorCreateService.new(name: nil).call)
+            generate_response(::Users::ActorCreateService.new(name: params[:name]).call)
           end
         end
       end

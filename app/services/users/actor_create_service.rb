@@ -1,4 +1,4 @@
-class Users::ActorCreateService
+class Users::ActorCreateService < AbstractService
   def initialize(params)
     @params = params
   end
@@ -14,7 +14,9 @@ class Users::ActorCreateService
     end
 
     # Only valid data reaches here
-    user = User.create!(contract_result.to_h)
-    Result.success(user)
+    user = User.new(contract_result.to_h)
+    return Result.failure(error_messages_for(user)) unless user.save
+
+    Result.success(user.as_json)
   end
 end
