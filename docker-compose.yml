@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: good_night_app
+      POSTGRES_PASSWORD: examplepassword
+      POSTGRES_DB: good_night_app_development
+    volumes:
+      - store:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile
+  #   image: good_night_app_api
+  #   command: >
+  #     sh -c "until pg_isready -h db -U good_night_app;
+  #            do sleep 2;
+  #            done;
+  #            ./bin/rails server -b 0.0.0.0"
+  #   volumes:
+  #     - .:/app
+  #     - bundle:/usr/local/bundle
+  #     - .env.development:/app/.env.development:ro
+  #   ports:
+  #     - "3001:3000"
+  #   environment:
+  #     RAILS_ENV: development
+  #   depends_on:
+  #     - db
+  #   stdin_open: true
+  #   tty: true
+
+volumes:
+  store:
+    driver: local
+  bundle:
+    driver: local
