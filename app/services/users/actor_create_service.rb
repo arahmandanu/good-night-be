@@ -17,6 +17,7 @@ class Users::ActorCreateService < AbstractService
     user = User.new(contract_result.to_h)
     return Result.failure(error_messages_for(user)) unless user.save
 
+    Redis::User::Set.new(user).call
     Result.success(user.as_json)
   end
 end

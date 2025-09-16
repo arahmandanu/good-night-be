@@ -5,9 +5,9 @@ module V1
         format :json
 
         resource :users do
-          desc "Returns hello world"
-          get do
-            { message: "Hello, world!" }
+          desc "Returns user details"
+          get "/:id/detail" do
+            generate_response(::Users::ActorGetDetailService.new(params[:id]).call)
           end
 
           desc "Create a user"
