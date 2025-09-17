@@ -25,22 +25,26 @@ Good Night Backend is a Ruby on Rails API service for sleep tracking, user manag
     git clone https://github.com/arahmandanu/good-night-be.git
     cd good-night-be
   ```
-2. Install dependencies
+2. Setup Env
+  - copy env.example
+  - rename to .env
+  - update env value
+3. Install dependencies
   ```bash
     bundle install
     bundle exec rails assets:precompile
   ```
-3. Setup database
+4. Setup database
   ```bash
     bin/rails db:create
     bin/rails db:migrate
   ```
-4. Run the server
+5. Run the server
   ```bash
     bin/rails server
     Server will be available at: http://localhost:3000
   ```
-5. Grape API
+6. Grape API
   ```bash
     http://localhost:3000/swagger
   ```
