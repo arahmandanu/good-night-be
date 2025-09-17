@@ -12,7 +12,7 @@ module V1
           end
 
           get "/list" do
-            success_response_paginate(::Follow::ActorListFollowedService.new(params: params).call)
+            generate_response(::Follow::ActorListFollowedService.new(params: params).call)
           end
 
           desc "Add user to follow"
@@ -26,11 +26,11 @@ module V1
 
           desc "Remove followed user"
           params do
-            requires :id, type: String, desc: "follow id"
             requires :user_id, type: String, desc: "Actor id"
+            requires :followed_id, type: String, desc: "follow id"
           end
           post "/remove" do
-            generate_response(::Follow::ActorRemoveFollowService.new(id: params[:id], user_id: params[:user_id]).call)
+            generate_response(::Follow::ActorRemoveFollowService.new(user_id: params[:user_id], followed_id: params[:followed_id]).call)
           end
         end
       end

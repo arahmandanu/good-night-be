@@ -1,16 +1,15 @@
 class Follow::ActorRemoveFollowService < AbstractService
-  def initialize(id: nil, user_id: nil)
-    @id = id
+  def initialize(user_id: nil, followed_id: nil)
     @user_id = user_id
+    @followed_id = followed_id
   end
 
   def call
-    # Validate input using ApplicationContract
-    contract_result = Follow::ActorRemoveFollowContract.new.call(id: @id, user_id: @user_id)
+    contract_result = Follow::ActorRemoveFollowContract.new.call(user_id: @user_id, followed_id: @followed_id)
 
     return Result.failure(contract_result) unless contract_result.success?
 
-    follow_record = UserFollow.find_by(id: @id, user_id: @user_id)
+    follow_record = UserFollow.find_by(user_id: @user_id, followed_id: @followed_id)
     return Result.failure("Follow record not found") unless follow_record
     return Result.failure(error_messages_for(follow_record)) unless follow_record.destroy
 

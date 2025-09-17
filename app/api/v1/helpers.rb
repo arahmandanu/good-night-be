@@ -20,15 +20,15 @@ module V1
           data.value.to_h
         end
 
-        success_response(response)
+        response.is_a?(Hash) && response.key?(:meta) ? success_response_paginate(response) : success_response(response)
       end
     end
 
     def success_response_paginate(response, status: 200, message: "Success")
       present({
         message: message,
-        data: response.value[:data],
-        meta: response.value[:meta]
+        data: response[:data],
+        meta: response[:meta]
       })
     end
 
