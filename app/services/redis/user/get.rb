@@ -15,8 +15,7 @@ class Redis::User::Get
 
     cache_data = ActiveSupport::JSON.decode(data)
     model.instantiate(cache_data)
-  rescue => e
-    pp e
+  rescue => _
     nil
   end
 

@@ -6,8 +6,7 @@ class Redis::User::Set
   def call
     REDIS.set(redis_key, @record_user.to_json, ex: expire, nx: true)
     true
-  rescue => e
-    pp e
+  rescue => _
     false
   end
 
