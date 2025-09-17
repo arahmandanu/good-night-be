@@ -5,6 +5,7 @@ module V1
     mount V1::Resources::Users::Users
     mount V1::Resources::Follows::User
     mount V1::Resources::Sleeps::Sleeps
+    mount V1::Resources::SleepsHistories::SleepsHistories
 
     add_swagger_documentation(
       mount_path: "doc",
