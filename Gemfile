@@ -58,6 +58,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "byebug", platforms: %i[ mri mingw x64_mingw ]
+
+  gem "rspec-rails"
 end
 
 group :development do
