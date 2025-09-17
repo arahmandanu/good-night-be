@@ -49,3 +49,37 @@ Good Night Backend is a Ruby on Rails API service for sleep tracking, user manag
 	•	Redis → caching user/follow data
 	•	Sidekiq (optional) → background jobs (if you add later)
 	•	Others → TBD
+
+## Example Requests
+1. Clock in sleep
+```bash
+  curl -X POST http://localhost:3000/api/v1/sleeps/clock_in \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "123e4567-e89b-12d3-a456-426614174000",
+    "start_time": "2025-09-17T22:00:00Z"
+  }'
+```
+2. Clock out sleep
+```bash
+  curl -X POST http://localhost:3000/api/v1/sleeps/clock_out \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "123e4567-e89b-12d3-a456-426614174000",
+    "end_time": "2025-09-18T06:00:00Z"
+  }'
+```
+3. Follow a user
+```bash
+  curl -X POST http://localhost:3000/api/v1/users/follow \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "123e4567-e89b-12d3-a456-426614174000",
+    "followed_id": "987e6543-e21b-45d6-b789-123456789abc"
+  }'
+```
+4. Get followed users’ sleep histories (last 7 days)
+```bash
+  curl -X GET "http://localhost:3000/api/v1/sleeps/histories?user_id=123e4567-e89b-12d3-a456-426614174000&start_date=2025-09-10&end_date=2025-09-17&page=1&per_page=10" \
+  -H "Content-Type: application/json"
+```
