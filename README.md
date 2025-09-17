@@ -2,7 +2,7 @@ Good Night Backend
 
 ## 📌 Description
 
-Good Night Backend is a Ruby on Rails API service for sleep tracking, user management, and social features.
+Good Night Backend is a Ruby on Rails API service for sleep tracking, user management.
 
 ## Main features:
 	•	Users can clock in/out sleep sessions
@@ -28,6 +28,7 @@ Good Night Backend is a Ruby on Rails API service for sleep tracking, user manag
 2. Install dependencies
   ```bash
     bundle install
+    bundle exec rails assets:precompile
   ```
 3. Setup database
   ```bash
@@ -37,13 +38,16 @@ Good Night Backend is a Ruby on Rails API service for sleep tracking, user manag
 4. Run the server
   ```bash
     bin/rails server
+    Server will be available at: http://localhost:3000
   ```
-  Server will be available at: http://localhost:3000
-
+5. Grape API
+  ```bash
+    http://localhost:3000/swagger
+  ```
 ## 🧪 Testing
-```bash
-  bundle exec rspec
-```
+  ```bash
+    bundle exec rspec
+  ```
 
 ## 🛠 Services
 	•	Redis → caching user/follow data
