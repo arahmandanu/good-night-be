@@ -9,12 +9,11 @@ class SleepsHistories::ActorGetListService < AbstractService
 
     return Result.failure(contract_result) unless contract_result.success?
 
-    # Only valid data reaches here
     user = Redis::User::Get.new(params[:user_id]).call
     return Result.failure(error_messages_for(user)) unless user.save
 
-    start_date = (params[:start_date].present? ? params[:start_date].to_datetime : 7.days.ago.to_date).utc
-    end_date = (params[:end_date].present? ? params[:end_date].to_datetime : Date.current).utc
+    start_date = params[:start_date].present? ? params[:start_date].to_date.beginning_of_day.in_time_zone("UTC") : 7.days.ago.beginning_of_day.in_time_zone("UTC")
+    end_date = params[:end_date].present? ? params[:end_date].to_date.end_of_day.in_time_zone("UTC") : Date.current.end_of_day.in_time_zone("UTC")
 
     my_histories = Sleep
                       .where(user_id: params[:user_id], start_time: start_date.beginning_of_day..end_date.end_of_day)

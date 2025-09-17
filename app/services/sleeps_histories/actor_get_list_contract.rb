@@ -13,11 +13,15 @@ class SleepsHistories::ActorGetListContract < ApplicationContract
   end
 
   rule(:start_date) do
-    key.failure("must be a valid date") unless value.is_a?(Date)
+    if value.present?
+      key.failure("must be a valid date") unless value.is_a?(Date)
+    end
   end
 
   rule(:end_date) do
-    key.failure("must be a valid date") unless value.is_a?(Date)
+    if value.present?
+      key.failure("must be a valid date") unless value.is_a?(Date)
+    end
   end
 
   rule(:page, :per_page) do |key|
