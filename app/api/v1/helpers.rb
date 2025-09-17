@@ -1,6 +1,8 @@
 module V1
   module Helpers
     extend Grape::API::Helpers
+    include ActiveSupport
+
     def generate_response(data)
       if data.failure?
         status = 422
@@ -12,8 +14,22 @@ module V1
 
         error_response(status: status, message: message)
       else
-        success_response(data.value.to_h)
+        response = if data.value.is_a?(String)
+          data.value
+        else
+          data.value.to_h
+        end
+
+        success_response(response)
       end
+    end
+
+    def success_response_paginate(response, status: 200, message: "Success")
+      present({
+        message: message,
+        data: response.value[:data],
+        meta: response.value[:meta]
+      })
     end
 
     def success_response(data, status: 200, message: "Success")
