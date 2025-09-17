@@ -1,24 +1,51 @@
-# README
+Good Night Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 📌 Description
 
-Things you may want to cover:
+Good Night Backend is a Ruby on Rails API service for sleep tracking, user management, and social features.
 
-* Ruby version
+## Main features:
+	•	Users can clock in/out sleep sessions
+	•	Follow/unfollow other users
+	•	View personal and social sleep histories
 
-* System dependencies
+## Tech stack:
+	•	PostgreSQL → primary database
+	•	Redis → caching (user data, follow relationships)
 
-* Configuration
+## ⚙️ Requirements
+	•	Ruby: 3.2.2 (your README says 3.22, I assume you mean 3.2.2?)
+	•	Rails: (add your version, e.g., 7.1.x)
+	•	PostgreSQL ≥ 13
+	•	Redis ≥ 6
 
-* Database creation
+## 🚀 Setup
+1. Clone the repository
+  ```bash
+    git clone https://github.com/arahmandanu/good-night-be.git
+    cd good-night-be
+  ```
+2. Install dependencies
+  ```bash
+    bundle install
+  ```
+3. Setup database
+  ```bash
+    bin/rails db:create
+    bin/rails db:migrate
+  ```
+4. Run the server
+  ```bash
+    bin/rails server
+  ```
+  Server will be available at: http://localhost:3000
 
-* Database initialization
+## 🧪 Testing
+```bash
+  bundle exec rspec
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 🛠 Services
+	•	Redis → caching user/follow data
+	•	Sidekiq (optional) → background jobs (if you add later)
+	•	Others → TBD
