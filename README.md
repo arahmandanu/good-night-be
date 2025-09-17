@@ -14,8 +14,8 @@ Good Night Backend is a Ruby on Rails API service for sleep tracking, user manag
 	•	Redis → caching (user data, follow relationships)
 
 ## ⚙️ Requirements
-	•	Ruby: 3.2.2 (your README says 3.22, I assume you mean 3.2.2?)
-	•	Rails: (add your version, e.g., 7.1.x)
+	•	Ruby: 3.2.2
+	•	Rails: 7.2.2.2
 	•	PostgreSQL ≥ 13
 	•	Redis ≥ 6
 
