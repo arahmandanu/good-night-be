@@ -10,8 +10,8 @@ module V1
             use :pagination_params
             use :date_ranges
           end
-          get "/:id/me" do
-            generate_response(::Sleeps::ActorClockInService.new(params[:user_id]).call)
+          get "/:user_id/me" do
+            generate_response(::SleepsHistories::ActorGetListService.new(params).call)
           end
 
           desc "Actor do clock out"
@@ -19,8 +19,8 @@ module V1
             use :pagination_params
             use :date_ranges
           end
-          get "/:id/followed" do
-            generate_response(::Sleeps::ActorClockOutService.new(params[:user_id], params[:sleep_id]).call)
+          get "/:user_id/followed" do
+            generate_response(::SleepsHistories::ActorGetListFollowedService.new(params).call)
           end
         end
       end
