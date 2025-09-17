@@ -12,8 +12,13 @@ class Sleep < ApplicationRecord
   scope :close, -> { where.not(end_time: nil) }
 
   before_save :calculate_duration, if: :end_time_changed?
+  after_create :increment_clockin_cache
 
   private
+
+  def increment_clockin_cache
+    Redis::Sleeps::UserClockin.new(user.id).increment
+  end
 
   def duration_minimum
     if duration_seconds < 15*60
