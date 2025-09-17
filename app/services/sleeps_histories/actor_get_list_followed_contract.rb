@@ -24,7 +24,13 @@ class SleepsHistories::ActorGetListFollowedContract < ApplicationContract
     end
   end
 
-  rule(:page, :per_page) do |key|
+  rule(:page) do
+    if value && value <= 0
+      key.failure("must be a positive integer")
+    end
+  end
+
+  rule(:per_page) do
     if value && value <= 0
       key.failure("must be a positive integer")
     end
