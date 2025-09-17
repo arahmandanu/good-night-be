@@ -8,7 +8,14 @@ RSpec.describe Users::ActorGetDetailService do
       it 'returns user details and success' do
         result = described_class.new(user.id).call
         expect(result).to be_success
-        expect(result.value).to include('id' => user.id, 'name' => user.name)
+        expect(result.value).to include(
+          id: user.id,
+          name: user.name,
+          created_at: user.created_at,
+          updated_at: user.updated_at
+        )
+        expect(result.value).to have_key(:extra)
+        expect(result.value[:extra]).to include(:total_followed, :total_clock_in)
       end
     end
 
