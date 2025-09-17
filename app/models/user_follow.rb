@@ -13,9 +13,11 @@ class UserFollow < ApplicationRecord
 
   def increment_followed_cache
     Redis::User::FollowCache.increment_followed(user.id)
+    Redis::User::Followed.new(user.id).add(followed.id)
   end
 
   def decrement_followed_cache
     Redis::User::FollowCache.decrement_followed(user.id)
+    Redis::User::Followed.new(user.id).remove(followed.id)
   end
 end

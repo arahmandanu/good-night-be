@@ -14,7 +14,8 @@ class Follow::ActorListFollowedService < AbstractService
     user =  Redis::User::Get.new(contract_result[:user_id]).call
     return Result.failure("User not found") unless user
 
-    followed_users = user.followed_users.page(contract_result[:page]).per(contract_result[:per_page])
+    list = Redis::User::Followed.new(user.id).get
+    followed_users = User.where(id: list).page(contract_result[:page]).per(contract_result[:per_page])
     Result.success(build_paginate_response(followed_users))
   end
 end
