@@ -2,8 +2,6 @@ module V1
   module Resources
     module Users
       class Users < Grape::API
-        format :json
-
         resource :users do
           desc "Returns user details"
           get "/:id/detail" do
