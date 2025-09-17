@@ -1,8 +1,8 @@
 class SleepsHistories::ActorGetListContract < ApplicationContract
   params do
     required(:user_id).filled(:string)
-    optional(:start_date).maybe(:string)
-    optional(:end_date).maybe(:string)
+    optional(:start_date).maybe(:date)
+    optional(:end_date).maybe(:date)
     optional(:page).maybe(:integer)
     optional(:per_page).maybe(:integer)
   end
@@ -12,10 +12,12 @@ class SleepsHistories::ActorGetListContract < ApplicationContract
     key.failure("must be a valid UUID") unless value =~ uuid_regex
   end
 
-  rule(:start_date, :end_date) do |key|
-    if value && !(value =~ /\A\d{4}-\d{2}-\d{2}\z/)
-      key.failure("must be in 'YYYY-MM-DD' format")
-    end
+  rule(:start_date) do
+    key.failure("must be a valid date") unless value.is_a?(Date)
+  end
+
+  rule(:end_date) do
+    key.failure("must be a valid date") unless value.is_a?(Date)
   end
 
   rule(:page, :per_page) do |key|
