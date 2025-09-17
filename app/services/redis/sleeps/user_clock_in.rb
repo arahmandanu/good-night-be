@@ -1,4 +1,4 @@
-class Redis::Sleeps::UserClockin
+class Redis::Sleeps::UserClockIn
   REDIS_KEY_PREFIX = "user:clockin".freeze
 
   def initialize(user_id)

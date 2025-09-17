@@ -17,7 +17,7 @@ class Sleep < ApplicationRecord
   private
 
   def increment_clockin_cache
-    Redis::Sleeps::UserClockin.new(user.id).increment
+    Redis::Sleeps::UserClockIn.new(user.id).increment
   end
 
   def duration_minimum
